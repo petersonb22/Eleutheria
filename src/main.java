@@ -7,17 +7,17 @@ public class main {
 		String CurrentState = "Ready"; // This is the State that commands are entered in.
 		System.out.println("State is: " +CurrentState+ "\n"); // using for debugging 
 		
-		System.out.println("Command list: Pickup, Drop, Inventory, Journal, Quit"); // Command list
+		System.out.println("Command list: 1. Pickup, 2. Drop, 3. Inventory, 4. Journal, 6. quit"); // Command list
 		Scanner scanner = new Scanner(System.in);//used to get user input.
 		String EnterdCommand;
 		boolean runGame = true;
 		while(runGame){// runs game
 			EnterdCommand = scanner.nextLine();
-			if (EnterdCommand.compareTo("quit")==0){//Quits game.
+			if (EnterdCommand.compareTo("6")==0 || EnterdCommand.compareTo("quit")==0){//Quits game.
 				System.out.println("end of game");
 				runGame = false;
 			}
-			else if (EnterdCommand.compareTo("Pickup")==0){
+			else if (EnterdCommand.compareTo("1")==0 || EnterdCommand.compareTo("Pickup")==0){
 				if(CurrentState.compareTo("Ready")==0){
 					CurrentState = "Pickup";
 					// Run list of objects in room to be picked up then reset to ready State
@@ -30,7 +30,7 @@ public class main {
 				}
 				System.out.println("State is: " +CurrentState+ "\n");// debugging.
 			}
-			else if (EnterdCommand.compareTo("Drop")==0){
+			else if (EnterdCommand.compareTo("2")==0 || EnterdCommand.compareTo("Drop")==0){
 				if(CurrentState.compareTo("Ready")==0){
 					CurrentState = "Drop";
 					// Run list of objects based on the players inventory.
@@ -43,7 +43,7 @@ public class main {
 				}
 				System.out.println("State is: " +CurrentState+ "\n");	// debugging		
 			}
-			else if (EnterdCommand.compareTo("Inventory")==0){
+			else if (EnterdCommand.compareTo("3")==0 || EnterdCommand.compareTo("Inventory")==0){
 				if (CurrentState.compareTo("Ready")==0){
 					CurrentState = "Inventory";
 					// Run show players Inventory
@@ -56,7 +56,7 @@ public class main {
 				}
 				System.out.println("State is: " +CurrentState+ "\n");	// debugging
 			}
-			else if (EnterdCommand.compareTo("Journal")==0){
+			else if (EnterdCommand.compareTo("4")==0 || EnterdCommand.compareTo("Journal")==0){
 				if (CurrentState.compareTo("Ready")==0){
 					//CurrentState = "Journal";
 					//Run show Players Journal
@@ -71,7 +71,7 @@ public class main {
 				}
 				else{
 					System.out.println("enter valid command from list");
-					System.out.println("Command list: Pickup, Drop, Inventory, Journal, Quit");
+					System.out.println("Command list: 1. Pickup, 2. Drop, 3. Inventory, 4. Journal, 6. quit");
 				}
 			}
 		}
