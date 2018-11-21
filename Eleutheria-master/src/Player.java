@@ -14,7 +14,7 @@ public class Player {
 //		print(c + " " + i.name);
 //	}
 //	playerInv.remove()
-	public void move(String direction)
+	public boolean move(String direction)
 	{
 		switch(direction)
 		{
@@ -22,43 +22,48 @@ public class Player {
 				if (currentRoom.eastRoom == null)
 				{
 					System.out.println("You can't go that way!");
+					return false;
 				}
 				else
 				{
 					currentRoom = currentRoom.eastRoom;
+					return true;
 				}
-				break;
 			case "S":
 				if (currentRoom.southRoom == null)
 				{
 					System.out.println("You can't go that way!");
+					return false;
 				}
 				else
 				{
 					currentRoom = currentRoom.southRoom;
+					return true;
 				}
-				break;
 			case "W":
 				if (currentRoom.westRoom == null)
 				{
 					System.out.println("You can't go that way!");
+					return false;
 				}
 				else
 				{
 					currentRoom = currentRoom.westRoom;
+					return true;
 				}
-				break;
 			case "N":
 				if (currentRoom.northRoom == null)
 				{
 					System.out.println("You can't go that way!");
+					return false;
 				}
 				else
 				{
 					currentRoom = currentRoom.northRoom;
+					return true;
 				}
-				break;
 		}
+		return false;
 	}
 	//public void addItem()
 	//public void removeItem();

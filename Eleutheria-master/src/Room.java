@@ -30,10 +30,49 @@ public class Room {
 	}
 	public void addRoom (Room r, String direction)
 	{
-		//add room to this rooms direction
+		switch(direction)
+		{
+			case "E":
+				r.westRoom = this;
+				eastRoom = r;
+				break;
+			case "S":
+				r.northRoom = this;
+				southRoom = r;
+				break;
+			case "W":
+				r.eastRoom = this;
+				westRoom = r;
+				break;
+			case "N":
+				r.southRoom = this;
+				northRoom = r;
+				break;
+		}
 	}
 	//public void displayItems
 	//prints numbered list of items in room
+	public void displayExits() //prints out available exits
+	{
+		String display = "Exits are: ";
+		if (northRoom != null)
+		{
+			display += "N ";
+		}
+		if (southRoom != null)
+		{
+			display += "S ";
+		}
+		if (eastRoom != null)
+		{
+			display += "E";
+		}
+		if (westRoom != null)
+		{
+			display += "W";
+		}
+		System.out.println(display);
+	}
 	public boolean checkItemsInRoom ()
 	{
 		//if roomInv.contains(keyInv.get(0))&&roomInv.contains(keyInv.get(1)&&roomInv.size()==2
