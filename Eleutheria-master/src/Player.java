@@ -2,18 +2,12 @@
 public class Player {
 
 	Room currentRoom; //room the player is in
-	//ArrayList<Item> playerInv
-	//String journal;
+	public Inventory playerInv;
 	public Player(Room startRoom)
 	{
 		currentRoom = startRoom;
+		playerInv = new Inventory();
 	}
-//	int c = 1;
-//	for(Item i: playerInv)
-//	{
-//		print(c + " " + i.name);
-//	}
-//	playerInv.remove()
 	public boolean move(String direction)
 	{
 		switch(direction)
@@ -65,6 +59,21 @@ public class Player {
 		}
 		return false;
 	}
-	//public void addItem()
-	//public void removeItem();
+	public void add(Item i)
+	{
+		playerInv.add(i);
+	}
+	public void examine(Item i)
+	{
+		
+	}
+	public void drop(Item i)
+	{
+		playerInv.remove(i);
+	}
+	public void inventory()
+	{
+		playerInv.displayInventory();
+	}
 }
+

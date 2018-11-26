@@ -11,14 +11,14 @@ public class Room {
 	
 	String description;
 	String name;
-	//thing that holds the items
-	
+	Inventory roomInv;
 	public Room()
 	{
 		westRoom = null;
 		eastRoom = null;
 		southRoom = null;
 		northRoom = null;
+		roomInv = new Inventory();
 	}
 	
 	public Room(Room north, Room east, Room south, Room west) //rooms are declared in the order north, east,south,west. 
@@ -27,6 +27,15 @@ public class Room {
 		eastRoom = east;
 		southRoom = south;
 		westRoom = west;
+		roomInv = new Inventory();
+	}
+	public void removeItem(Item i)
+	{
+		roomInv.remove(i);
+	}
+	public void addItem(Item i)
+	{
+		roomInv.add(i);
 	}
 	public void addRoom (Room r, String direction)
 	{
@@ -79,5 +88,10 @@ public class Room {
 		//display clue
 		//return true;
 		return false;
+	}
+
+	public void getItems() {
+		// TODO Auto-generated method stub
+		roomInv.displayInventory();
 	}
 }
