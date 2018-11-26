@@ -1,6 +1,6 @@
 public class main{
 	
-	String CurrentState = "Ready"; // This is the State that commands are entered in.
+	String CurrentState = "Ready" // This is the State that commands are entered in.
 	System.out.println("State is: " +CurrentState+ "\n"); // using for debugging 
 	
 	System.out.println("Command list: Pickup, Drop, Inventory, Journal, Quit"); // Command list
