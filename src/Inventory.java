@@ -31,14 +31,30 @@ import java.util.ArrayList;
     }
     public Item getItem(String itemName)
     {
+    	int position = 0;
+    	String itemNum = "0";
     	for(Item i:itemList)
     	{
-    		if (i.getTag().compareTo(itemName)==0)
+    		
+    		if (i.getTag().compareTo(itemName)==0|| itemName.compareTo(itemNum)==0)
     		{
     			return i;
     		}
+    		position ++;
+    		itemNum = Integer.toString(position);
     	}
     	return null;
+    }
+    public boolean contains(Item i)
+    {
+    	for (Item j: itemList)
+    	{
+    		if (j.equals(i))
+    		{
+    			return true;
+    		}
+    	}
+    	return false;
     }
     public void add(Item i)
     {
@@ -48,4 +64,8 @@ import java.util.ArrayList;
     {
     	itemList.remove(i);
     }
- }
+    public int size()
+    {
+    	return itemList.size();
+    }
+}

@@ -1,7 +1,7 @@
 
 public class Player {
 
-	Room currentRoom; //room the player is in
+	private Room currentRoom; //room the player is in
 	public Inventory playerInv;
 	public int turnCounter;
 	public Player(Room startRoom)
@@ -9,6 +9,10 @@ public class Player {
 		currentRoom = startRoom;
 		playerInv = new Inventory();
 		turnCounter = 0;
+	}
+	public Room getRoom()
+	{
+		return currentRoom;
 	}
 	public boolean move(String direction)
 	{

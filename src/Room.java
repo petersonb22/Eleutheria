@@ -13,6 +13,7 @@ public class Room {
 	String name;
 	String solutionText;
 	Inventory roomInv;
+	Inventory keyInv;
 	public Room()
 	{
 		westRoom = null;
@@ -21,7 +22,22 @@ public class Room {
 		northRoom = null;
 		roomInv = new Inventory();
 	}
-	
+	public String getName()
+	{
+		return name;
+	}
+	public String getDescription()
+	{
+		return description;
+	}
+	public String getSolution()
+	{
+		return solutionText;
+	}
+	public Inventory getInv()
+	{
+		return roomInv;
+	}
 	public Room(Room north, Room east, Room south, Room west) //rooms are declared in the order north, east,south,west. 
 	{
 		northRoom = north;
@@ -85,9 +101,11 @@ public class Room {
 	}
 	public boolean checkItemsInRoom ()
 	{
-		//if roomInv.contains(keyInv.get(0))&&roomInv.contains(keyInv.get(1)&&roomInv.size()==2
-		//display clue
-		//return true;
+		if (roomInv.contains(keyInv.getItem(0))&&(roomInv.contains(keyInv.getItem(1))&&(roomInv.size()==2)))
+		{
+			//display clue
+			return true;
+		}
 		return false;
 	}
 	public void listItems()
