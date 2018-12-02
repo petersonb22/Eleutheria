@@ -1,0 +1,41 @@
+public class Item
+{
+    // Instance Variables for the game's items
+	private String itemName;
+	private String itemDescription;
+
+	// Constructor Declaration
+	public Item(String itemName, String itemDescription)
+	{
+	    this.itemName = itemName;
+	    this.itemDescription = itemDescription;
+	}
+	
+	// get Method to return itemDescription
+	public String getitemDescription()
+	{
+        return itemDescription;
+	}
+
+	
+// includes constructor and two arguments per Item (itemName and itemDescription)	
+public static void main(String[] args) 
+{
+	Item PhilosophersStone = new Item ("PS", "a legendary substance allegedly capable of turning inexpensive metals into gold"); 
+	Item StaffofWenge = new Item ("SW", "a staff made of wenge. A tropical timber, very dark in color with a distinctive figure");
+	Item KeyofCentaurus = new Item ("KC"," a key bearing the name Ixionidae");
+	Item StaffofBubinga = new Item ("SB", "a staff made of Bubinga wood");
+	Item PlatinumChallace = new Item ("PC", "the base of the challace has an inscription, Swordquest");
+	Item KeyofAnubis = new Item ("KA", "the key bears a picture of a jackal");
+	Item Flower = new Item ("FW", "a flower, purple in color");
+	Item GoldTalisman = new Item ("GT", "the talisman is made of 18K solid gold, studded with 12 diamonds and the birthstones of the twelve zodiac signs");
+	Item KeyofLaburinthos = new Item ("KL", "enterance to Daedalus");
+	Item StaffofPadauk = new Item ("SP", "a staff with reddish orange coloration");
+	Item RodofAsclepius = new Item ("RA", "a serpent entwined rod");
+	Item BallofThread = new Item ("BT", "a gift from Ariadne");
+	Item RedRuby = new Item ("RB", "a gemstone found in Metatron by the lucky adventurer");
+		// TODO Auto-generated method stub
+
+	}
+
+}

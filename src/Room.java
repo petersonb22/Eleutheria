@@ -14,13 +14,31 @@ public class Room {
 	String solutionText;
 	Inventory roomInv;
 	Inventory keyInv;
-	public Room()
+	private boolean solved;
+	public Room(String name)
 	{
+		this.name = name;
 		westRoom = null;
 		eastRoom = null;
 		southRoom = null;
 		northRoom = null;
 		roomInv = new Inventory();
+		keyInv = new Inventory();
+		solved = false;
+	}
+	public void setDescription(String desc)
+	{
+		description = desc;
+	}
+	public void setKeyInv(Item a,Item b)
+	{
+		keyInv.add(a);
+		keyInv.add(b);
+	}
+	public void setSolution(String riddle)
+	{
+		solutionText = riddle;
+			
 	}
 	public String getName()
 	{
@@ -32,7 +50,12 @@ public class Room {
 	}
 	public String getSolution()
 	{
-		return solutionText;
+		if (!solved)
+		{
+			solved = true;
+			return solutionText;
+		}
+		return "";
 	}
 	public Inventory getInv()
 	{
@@ -112,7 +135,6 @@ public class Room {
 	{
 		roomInv.displayInventory();
 	}
-
 	public void getItems() {
 		// TODO Auto-generated method stub
 		roomInv.displayFull();

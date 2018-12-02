@@ -2,7 +2,7 @@
 public class Player {
 
 	private Room currentRoom; //room the player is in
-	public Inventory playerInv;
+	private Inventory playerInv;
 	public int turnCounter;
 	public Player(Room startRoom)
 	{
@@ -64,6 +64,10 @@ public class Player {
 				}
 		}
 		return false;
+	}
+	public Item getItem(String s)
+	{
+		return playerInv.getItem(s);
 	}
 	public void add(Item i)
 	{
