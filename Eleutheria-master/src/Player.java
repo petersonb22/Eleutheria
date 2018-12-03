@@ -1,12 +1,18 @@
 
 public class Player {
 
-	Room currentRoom; //room the player is in
-	public Inventory playerInv;
+	private Room currentRoom; //room the player is in
+	private Inventory playerInv;
+	public int turnCounter;
 	public Player(Room startRoom)
 	{
 		currentRoom = startRoom;
 		playerInv = new Inventory();
+		turnCounter = 0;
+	}
+	public Room getRoom()
+	{
+		return currentRoom;
 	}
 	public boolean move(String direction)
 	{
@@ -59,21 +65,28 @@ public class Player {
 		}
 		return false;
 	}
+	public Item getItem(String s)
+	{
+		return playerInv.getItem(s);
+	}
 	public void add(Item i)
 	{
 		playerInv.add(i);
+		turnCounter++;
 	}
 	public void examine(Item i)
 	{
-		
+		turnCounter++;
 	}
 	public void drop(Item i)
 	{
 		playerInv.remove(i);
+		turnCounter++;
 	}
 	public void inventory()
 	{
 		playerInv.displayInventory();
+		turnCounter++;
 	}
 }
 

@@ -11,16 +11,63 @@ public class Room {
 	
 	String description;
 	String name;
+	String solutionText;
+	String riddle;
 	Inventory roomInv;
-	public Room()
+	Inventory keyInv;
+	private boolean solved;
+	public Room(String name)
 	{
+		this.name = name;
 		westRoom = null;
 		eastRoom = null;
 		southRoom = null;
 		northRoom = null;
 		roomInv = new Inventory();
+		keyInv = new Inventory();
+		solved = false;
 	}
-	
+	public void setDescription(String desc)
+	{
+		description = desc;
+	}
+	public void setKeyInv(Item a,Item b)
+	{
+		keyInv.add(a);
+		keyInv.add(b);
+	}
+	public void setSolution(String solution,String riddle)
+	{
+		solutionText = solution;
+		this.riddle = riddle;
+			
+	}
+	public String getName()
+	{
+		return name;
+	}
+	public String getDescription()
+	{
+		return description;
+	}
+	public String getSolution()
+	{
+		if (!solved)
+		{
+			solved = true;
+			String disp = solutionText + " " + riddle;
+			return disp;
+		}
+		return "";
+	}
+	public String getRiddle()
+	{
+		return riddle;
+	}
+	public Inventory getInv()
+	{
+		return roomInv;
+	}
 	public Room(Room north, Room east, Room south, Room west) //rooms are declared in the order north, east,south,west. 
 	{
 		northRoom = north;
@@ -84,14 +131,19 @@ public class Room {
 	}
 	public boolean checkItemsInRoom ()
 	{
-		//if roomInv.contains(keyInv.get(0))&&roomInv.contains(keyInv.get(1)&&roomInv.size()==2
-		//display clue
-		//return true;
+		if (roomInv.contains(keyInv.getItem(0))&&(roomInv.contains(keyInv.getItem(1))&&(roomInv.size()==2)))
+		{
+			//display clue
+			return true;
+		}
 		return false;
 	}
-
+	public void listItems()
+	{
+		roomInv.displayInventory();
+	}
 	public void getItems() {
 		// TODO Auto-generated method stub
-		roomInv.displayInventory();
+		roomInv.displayFull();
 	}
 }
