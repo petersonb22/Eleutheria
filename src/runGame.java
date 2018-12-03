@@ -6,35 +6,35 @@ public class runGame {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub	
 		//declare all items
-		Item PhilosophersStone = new Item ("Philosophers Stone","PS", "a legendary substance allegedly capable of turning inexpensive metals into gold"); 
-		Item StaffofWenge = new Item ("Staff of Wenge", "SW", "a staff made of wenge. A tropical timber, very dark in color with a distinctive figure");
-		Item KeyofCentaurus = new Item ("Key of Centaurus","KC"," a key bearing the name Ixionidae");
-		Item StaffofBubinga = new Item ("Staff of Bubinga", "SB", "a staff made of Bubinga wood");
-		Item PlatinumChallace = new Item ("Platinum Challace", "PC", "the base of the challace has an inscription, Swordquest");
-		Item KeyofAnubis = new Item ("KeyofAnubis", "KA", "the key bears a picture of a jackal");
-		Item Flower = new Item ("Flower", "FW", "a flower, purple in color");
-		Item GoldTalisman = new Item ("GoldTalisman", "GT", "the talisman is made of 18K solid gold, studded with 12 diamonds and the birthstones of the twelve zodiac signs");
-		Item KeyofLaburinthos = new Item ("Key of Laburinthos", "KL", "enterance to Daedalus");
-		Item StaffofPadauk = new Item ("Staff of Padauk", "SP", "a staff with reddish orange coloration");
-		Item RodofAsclepius = new Item ("Rod of Asclepius", "RA", "a serpent entwined rod");
-		Item BallofThread = new Item ("Ball of Thread", "BT", "a gift from Ariadne");
+		Item PhilosophersStone = new Item ("Philosophers Stone","PS", "This is a small yet perfectly spherical red stone with a glow that seems be pulsing as if with the beat of a heart."); 
+		Item StaffofWenge = new Item ("Staff of Wenge", "SW", "This is a long staff about the same height as you, made of a dark brown wood that is gnarled and twisted. There are some green leaves at the head of the staff around a glowing yellow gem.");
+		Item KeyofCentaurus = new Item ("Key of Centaurus","KC","This is a key made of well-worn wrought-iron and the head of the key looks to be in the shape of a U.");
+		Item StaffofBubinga = new Item ("Staff of Bubinga", "SB", "This is a tall staff that is smooth and well-polished wood with a slightly reddish tint.");
+		Item PlatinumChallace = new Item ("Platinum Challace", "PC", "This is a chalice that seems to be made of a very shiny metal. It is encrusted with gems and appears ornate.");
+		Item KeyofAnubis = new Item ("KeyofAnubis", "KA", "This key is made of black obsidian and the top of the key has the shape of a jackal or dog’s head. It feels ice cold to the touch.");
+		Item Flower = new Item ("Flower", "FW", "This flower is open and has a beautiful set of iridescent petals that almost seem to glow.");
+		Item GoldTalisman = new Item ("GoldTalisman", "GT", "This is a golden talisman that is comprised of a triangle with an owl inscribed in it and attached to a golden chain that may be worn as a necklace.");
+		Item KeyofLaburinthos = new Item ("Key of Laburinthos", "KL", "This is a key made of white marble with ornate geometric patterns carved into the head and has several extra teeth positioned at odd angles.s");
+		Item StaffofPadauk = new Item ("Staff of Padauk", "SP", "This is a old staff made from a bright orange wood that seems to have faded with time. Directly below the well-worn handle, there is an engraved letter П.");
+		Item RodofAsclepius = new Item ("Rod of Asclepius", "RA", "This rod is made of bronze and is engraved with what appears to be two snakes coiling around it. The engraving has such a high degree of detail that it almost appears one of the snakes is moving.");
+		Item BallofThread = new Item ("Ball of Thread", "BT", "This is a ball of thread about the size of a large melon.");
 		Item RedRuby = new Item ("RedRuby", "RB", "a gemstone found in Metatron by the lucky adventurer");
 		
 		//declare all rooms
 		Room metatron = new Room("Metatron");
-		metatron.setSolution("Boró na to vlépo apó polloús, allá den krateítai apó kanéna");
+		metatron.setSolution("You wince as one of the walls starts to glow brightly in this dark, dingy room where any light is blinding. After a second, the glow fades to something manageable. As you observe the wall, you see a phrase written in glowing letters:","Boró na to vlépo apó polloús, allá den krateítai apó kanéna");
 		metatron.setKeyInv(Flower, StaffofPadauk);
 		metatron.setDescription("You walk into a room with walls so dark you can only tell that they are there from the flickering torches mounted on them. When you look up, there appears to be no ceiling, just utter darkness. As you look down, you feel a bit of vertigo because you can hardly tell that there is a floor beneath your feet. It is a dark as the surroundings. You feel as if you are in the deepest part of the Earth with nowhere to go. You also find a vase and what looks to be a display case with the Greek letter П embossed on the side of it ");
 		Room tartarus = new Room("Tartarus");
-		tartarus.setSolution("koytkste pro ton Ouran");
+		tartarus.setSolution("You hear a teeth-jarringly sharp scrape, as if long nails are creating gouges in stone. You look over to one of the walls where the sound is emanating and you see letters actively being engraved in the wall. It is clear that this is the source of the sound even though you cannot see what is engraving the letters. When the sound finally lets up, you see the phrase:","koytkste pro ton Ouran");
 		tartarus.setKeyInv(PhilosophersStone, BallofThread);
 		tartarus.setDescription("You walk into a room comprised of brick walls. The bricks are blood red and here and there are paintings on the walls of the most viscous and disgusting looking monsters you have ever seen. The room is lit by a rusted iron chandelier with purple flames making the room all the more eerie. The floor is uneven and comprised of splintered human bones that look to have been chewed. You also find a loom and, embedded in one of the walls, is a neckless with a perfectly round empty fitting for a gem.");
 		Room elysianFields = new Room("Elysian Fields");
-		elysianFields.setSolution("Emay o nyo tee Ra");
+		elysianFields.setSolution("You feel the earth beneath you shake and hear the smashing of stones. As you turn to find the source of the sound, you see pillars of black stone rising up from the ground forming the phrase:","Emay o nyo tee Ra");
 		elysianFields.setKeyInv(KeyofCentaurus, GoldTalisman);
 		elysianFields.setDescription("You walk into a room that at first appears to have no walls. You feel a warm breeze hit you as it ripples the grassy field at your feet. When you look up, you feel the warmth of the sun on your face as you shield your eyes from the sun. You also find a lock that looks to be made from an old cow bell embedded in one of the walls. There is also a pedestal made of marble with patterns on it lined in gold.");
 		Room cosmos = new Room("Cosmos");
-		cosmos.setSolution("ktee stee thsee o nnelo mou enay");
+		cosmos.setSolution("You feel a rush of wind blow past you and you sense that the room has become a little less brighter. You look in the direction the wind is blowing and you see that most of the wall is still glowing but the portions that are no longer glowing spell out the phrase:","ktee stee thsee o nnelo mou enay");
 		cosmos.setKeyInv(StaffofWenge,KeyofAnubis);
 		cosmos.setDescription("You walk into a room that has walls of a soft yellow color, and the walls almost seem to glow. When you look up, you have to close your eyes because it feels like you are looking into the sun despite being underground in the labyrinth. As you look down, you see you have no shadow and the same glow from the walls. You also find a set of hooks that are just the right size to hold a staff and embedded in one of the walls is a lock that looks to be made of bone.");
 		metatron.addRoom(tartarus, "N");

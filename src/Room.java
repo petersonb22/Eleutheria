@@ -12,6 +12,7 @@ public class Room {
 	String description;
 	String name;
 	String solutionText;
+	String riddle;
 	Inventory roomInv;
 	Inventory keyInv;
 	private boolean solved;
@@ -35,9 +36,10 @@ public class Room {
 		keyInv.add(a);
 		keyInv.add(b);
 	}
-	public void setSolution(String riddle)
+	public void setSolution(String solution,String riddle)
 	{
-		solutionText = riddle;
+		solutionText = solution;
+		this.riddle = riddle;
 			
 	}
 	public String getName()
@@ -53,9 +55,14 @@ public class Room {
 		if (!solved)
 		{
 			solved = true;
-			return solutionText;
+			String disp = solutionText + " " + riddle;
+			return disp;
 		}
 		return "";
+	}
+	public String getRiddle()
+	{
+		return riddle;
 	}
 	public Inventory getInv()
 	{
