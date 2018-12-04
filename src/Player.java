@@ -4,6 +4,7 @@ public class Player {
 	private Room currentRoom; //room the player is in
 	private Inventory playerInv;
 	public int turnCounter;
+	private String[] journal;
 	public Player(Room startRoom)
 	{
 		currentRoom = startRoom;
@@ -16,6 +17,7 @@ public class Player {
 	}
 	public boolean move(String direction)
 	{
+		turnCounter++;
 		switch(direction)
 		{
 			case "E":
