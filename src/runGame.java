@@ -21,6 +21,7 @@ public class runGame {
 		Item RedRuby = new Item ("RedRuby", "RB", "a gemstone found in Metatron by the lucky adventurer");
 		
 		//declare all rooms
+		Room treasureRoom = new Room("Treasure Room");
 		Room metatron = new Room("Metatron");
 		metatron.setSolution("You wince as one of the walls starts to glow brightly in this dark, dingy room where any light is blinding. After a second, the glow fades to something manageable. As you observe the wall, you see a phrase written in glowing letters:","Boró na to vlépo apó polloús, allá den krateítai apó kanéna");
 		metatron.setKeyInv(Flower, StaffofPadauk);
@@ -59,7 +60,7 @@ public class runGame {
 		elysianFields.addItem(RodofAsclepius);
 		elysianFields.addItem(BallofThread);
 		//declare player
-		final int TURN_LIMIT = 2; //arbitrary number, change when game is complete
+		final int TURN_LIMIT = 70; //arbitrary number, change when game is complete
 		Player player = new Player(metatron);
 		
 		String CurrentState = "Ready"; // This is the State that commands are entered in.
@@ -70,159 +71,188 @@ public class runGame {
 		String EnterdCommand;
 		boolean runGame = true;
 		while(runGame){// runs game
-			
-			//display descriptive text
-			System.out.println("You are in " + player.getRoom().name);
-			System.out.println(player.getRoom().getDescription());
-			System.out.print("You see the following items in the room: ");
-			player.getRoom().getItems();
-			System.out.println("What would you like to do?");
-			EnterdCommand = scanner.nextLine(); //user input
-			if (EnterdCommand.compareTo("quit")==0){//Quits game.
-				System.out.println("end of game");
-				runGame = false;
+			if (player.getRoom() == treasureRoom)
+			{
+				int guesses = 3;
+				
+				//display description
+				String guess = scanner.nextLine();
+				if (guess.compareTo("Saturn")==0)
+				{
+					//win text
+				}
+				else
+				{
+					guesses--;
+					//wrong text
+				}
+				if (guesses == 0)
+				{
+					//lose text
+				}
+				
+				
 			}
-			else if (EnterdCommand.compareTo("Pickup")==0){
-				if(CurrentState.compareTo("Ready")==0){
-					CurrentState = "Pickup";
-					// Run list of objects in room to be picked up then reset to ready State
-					player.getRoom().listItems();
-					System.out.println("Enter the name of the item to add to your Inventory");
-					String roomItem = scanner.nextLine();
-					Item itemToAdd = player.getRoom().getInv().getItem(roomItem);
-					while(itemToAdd ==null && roomItem.compareTo("cancel")!=0)
-					{
+			else
+			{
+				//display descriptive text
+				System.out.println("You are in " + player.getRoom().name);
+				System.out.println(player.getRoom().getDescription());
+				System.out.print("You see the following items in the room: ");
+				player.getRoom().getItems();
+				System.out.println("What would you like to do?");
+				EnterdCommand = scanner.nextLine(); //user input
+				if (EnterdCommand.compareTo("quit")==0){//Quits game.
+					System.out.println("end of game");
+					runGame = false;
+				}
+				else if (EnterdCommand.compareTo("Pickup")==0){
+					if(CurrentState.compareTo("Ready")==0){
+						CurrentState = "Pickup";
+						// Run list of objects in room to be picked up then reset to ready State
+						player.getRoom().listItems();
 						System.out.println("Enter the name of the item to add to your Inventory");
-						roomItem = scanner.nextLine();
-						if (roomItem.compareTo("cancel")==0)
+						String roomItem = scanner.nextLine();
+						Item itemToAdd = player.getRoom().getInv().getItem(roomItem);
+						while(itemToAdd ==null && roomItem.compareTo("cancel")!=0)
 						{
-							break;
+							System.out.println("Enter the name of the item to add to your Inventory");
+							roomItem = scanner.nextLine();
+							if (roomItem.compareTo("cancel")==0)
+							{
+								break;
+							}
+							itemToAdd = player.getRoom().getInv().getItem(roomItem);
 						}
-						itemToAdd = player.getRoom().getInv().getItem(roomItem);
-					}
-					if (itemToAdd == null)
-					{
-						
-					}
-					else
-					{
-						player.add(itemToAdd);
-				    	player.getRoom().removeItem(itemToAdd);
-				    	if(player.getRoom().checkItemsInRoom())
-				    	{
-				    		System.out.println(player.getRoom().getSolution());
-				    	}
-					}
-				    CurrentState = "Ready";
-					//list items in room
-					//read item number to be picked up from player
-					//
-				}
-				else{// Used for if they type a command in the wrong mode
-					System.out.println("enter valid command from list");
-					/*System.out.println("Command list: Move,Examine, Pickup, Drop, Inventory, Journal, Quit"); Will need to change for the inputs for the CurrentState menu */
-				}
-				System.out.println("State is: " +CurrentState+ "\n");// debugging.
-			}
-			else if (EnterdCommand.compareTo("Drop")==0){
-				if(CurrentState.compareTo("Ready")==0){
-					CurrentState = "Drop";
-					// Run list of objects based on the players inventory.
-					System.out.println("Which Item would you like to drop?");
-					player.inventory();
-					String itemTag = scanner.nextLine();
-					Item itemToRemove = player.getItem(itemTag);
-					while(itemToRemove ==null && itemTag.compareTo("cancel")!=0)
-					{
-						System.out.println("Enter the name of the item to add to your Inventory");
-						itemTag = scanner.nextLine();
-						if (itemTag.compareTo("cancel")==0)
+						if (itemToAdd == null)
 						{
-							break;
+							
 						}
-						itemToRemove = player.getItem(itemTag);
+						else
+						{
+							player.add(itemToAdd);
+					    	player.getRoom().removeItem(itemToAdd);
+					    	if(player.getRoom().checkItemsInRoom())
+					    	{
+					    		System.out.println(player.getRoom().getSolution());
+					    		player.writeJournal();
+					    	}
+						}
+					    CurrentState = "Ready";
+						//list items in room
+						//read item number to be picked up from player
+						//
 					}
-					if (itemToRemove != null)
-					{
-						player.getRoom().addItem(itemToRemove);
-						player.drop(itemToRemove);
-						if(player.getRoom().checkItemsInRoom())
-				    	{
-				    		System.out.println(player.getRoom().getSolution());
-				    	}
+					else{// Used for if they type a command in the wrong mode
+						System.out.println("enter valid command from list");
+						/*System.out.println("Command list: Move,Examine, Pickup, Drop, Inventory, Journal, Quit"); Will need to change for the inputs for the CurrentState menu */
 					}
-				    CurrentState = "Ready";
+					System.out.println("State is: " +CurrentState+ "\n");// debugging.
 				}
-				else{
-					System.out.println("enter valid command from list");
-					/*System.out.println("Command list: Pickup, Drop, Inventory, Journal, Quit"); Will need to change for the inputs for the CurrentState menu */
-				}	
-			}
-			else if (EnterdCommand.compareTo("Inventory")==0){
-				if (CurrentState.compareTo("Ready")==0){
-					CurrentState = "Inventory";
-					// Run show players Inventory
-					player.inventory();
-					CurrentState = "Ready";
+				else if (EnterdCommand.compareTo("Drop")==0){
+					if(CurrentState.compareTo("Ready")==0){
+						CurrentState = "Drop";
+						// Run list of objects based on the players inventory.
+						System.out.println("Which Item would you like to drop?");
+						player.inventory();
+						String itemTag = scanner.nextLine();
+						Item itemToRemove = player.getItem(itemTag);
+						while(itemToRemove ==null && itemTag.compareTo("cancel")!=0)
+						{
+							System.out.println("Enter the name of the item to add to your Inventory");
+							itemTag = scanner.nextLine();
+							if (itemTag.compareTo("cancel")==0)
+							{
+								break;
+							}
+							itemToRemove = player.getItem(itemTag);
+						}
+						if (itemToRemove != null)
+						{
+							player.getRoom().addItem(itemToRemove);
+							player.drop(itemToRemove);
+							if(player.getRoom().checkItemsInRoom())
+					    	{
+					    		System.out.println(player.getRoom().getSolution());
+					    		player.writeJournal();
+					    	}
+						}
+					    CurrentState = "Ready";
+					}
+					else{
+						System.out.println("enter valid command from list");
+						/*System.out.println("Command list: Pickup, Drop, Inventory, Journal, Quit"); Will need to change for the inputs for the CurrentState menu */
+					}	
 				}
-				else{
-					System.out.println("enter valid command from list");
-					/*System.out.println("Command list: Pickup, Drop, Inventory, Journal, Quit"); Will need to change for the inputs for the CurrentState menu */
-				}
-			}
-			else if (EnterdCommand.compareTo("Journal")==0){
-				if (CurrentState.compareTo("Ready")==0){
-					//CurrentState = "Journal";
-					//Run show Players Journal
-					System.out.println("Game text goes here");
-					System.out.println("Command list for Journal:  ");// This is a list of commands for while in the Journal.
-				}
-				else{
-					System.out.println("enter valid command from list");
-				}
-				System.out.println("State is: " +CurrentState+ "\n");// debugging
-				}
-			else if (EnterdCommand.compareTo("Move")==0){
-				if (CurrentState.compareTo("Ready")==0) {
-					//select direction
-					CurrentState = "Move";
-					System.out.println("Which way would you like to go?");
-					//System.out.println("Command list for move:  ");// This is a list of commands for while in the Move Screen.
-					player.getRoom().displayExits();
-					String direction = scanner.nextLine();
-					if(player.move(direction))
-					{
+				else if (EnterdCommand.compareTo("Inventory")==0){
+					if (CurrentState.compareTo("Ready")==0){
+						CurrentState = "Inventory";
+						// Run show players Inventory
+						player.inventory();
 						CurrentState = "Ready";
 					}
-				}
-			}
-			else if (EnterdCommand.compareTo("Examine")==0)
-			{
-				if (CurrentState.compareTo("Ready")==0) {
-					CurrentState = "Examine";
-					player.getRoom().getItems();
-					System.out.println("Enter the name of the item you want to Examine");
-					String roomItem = scanner.nextLine();
-					Item itemToExamine = player.getRoom().getInv().getItem(roomItem);
-					while(itemToExamine ==null && roomItem.compareTo("cancel")!=0)
-					{
-						System.out.println("Enter the name of the item to examine");
-						roomItem = scanner.nextLine();
-						itemToExamine = player.getRoom().getInv().getItem(roomItem);
+					else{
+						System.out.println("enter valid command from list");
+						/*System.out.println("Command list: Pickup, Drop, Inventory, Journal, Quit"); Will need to change for the inputs for the CurrentState menu */
 					}
-					if (itemToExamine != null)
-						System.out.println(itemToExamine.getitemDescription());
-				    CurrentState = "Ready";
 				}
-			}
-			else{
-				System.out.println("enter valid command from list");
-			}
-			System.out.println((TURN_LIMIT - player.turnCounter) + " Turns remaining");
-			if (player.turnCounter >= TURN_LIMIT)
-			{
-				//display fail text
-				runGame = false;
+				else if (EnterdCommand.compareTo("Journal")==0){
+					if (CurrentState.compareTo("Ready")==0){
+						//CurrentState = "Journal";
+						//Run show Players Journal
+						player.readJournal();
+					}
+					else{
+						System.out.println("enter valid command from list");
+					}
+					System.out.println("State is: " +CurrentState+ "\n");// debugging
+					}
+				else if (EnterdCommand.compareTo("Move")==0){
+					if (CurrentState.compareTo("Ready")==0) {
+						//select direction
+						CurrentState = "Move";
+						System.out.println("Which way would you like to go?");
+						//System.out.println("Command list for move:  ");// This is a list of commands for while in the Move Screen.
+						player.getRoom().displayExits();
+						String direction = scanner.nextLine();
+						if(player.move(direction))
+						{
+							CurrentState = "Ready";
+						}
+					}
+				}
+				else if (EnterdCommand.compareTo("Examine")==0)
+				{
+					if (CurrentState.compareTo("Ready")==0) {
+						CurrentState = "Examine";
+						player.getRoom().getItems();
+						System.out.println("Enter the name of the item you want to Examine");
+						String roomItem = scanner.nextLine();
+						Item itemToExamine = player.getRoom().getInv().getItem(roomItem);
+						while(itemToExamine ==null && roomItem.compareTo("cancel")!=0)
+						{
+							System.out.println("Enter the name of the item to examine");
+							roomItem = scanner.nextLine();
+							itemToExamine = player.getRoom().getInv().getItem(roomItem);
+						}
+						if (itemToExamine != null)
+							System.out.println(itemToExamine.getitemDescription());
+					    CurrentState = "Ready";
+					}
+				}
+				else{
+					System.out.println("enter valid command from list");
+				}
+				if (player.getJournalSize()==4)
+				{
+					elysianFields.addRoom(treasureRoom, "S");
+				}
+				System.out.println((TURN_LIMIT - player.turnCounter) + " Turns remaining");
+				if (player.turnCounter >= TURN_LIMIT)
+				{
+					//display fail text
+					runGame = false;
+				}
 			}
 		}
 		scanner.close();
