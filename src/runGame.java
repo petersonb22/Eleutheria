@@ -22,6 +22,7 @@ public class runGame {
 		
 		//declare all rooms
 		Room treasureRoom = new Room("Treasure Room");
+		treasureRoom.setDescription("You walk into a room with walls made of gold. Gold coins and gems litter the floor and piles of riches the reach the vaulted gold ceiling. What little you can see of the floor is paved in gold, as well. Across the way you see a set of double doors swing open on its own. Outside you view a bright sunset from the top of a hill overlooking a lush valley that leads to the coast. Also outside is an owl siting in an olive tree next to a tall woman.");
 		Room metatron = new Room("Metatron");
 		metatron.setSolution("You wince as one of the walls starts to glow brightly in this dark, dingy room where any light is blinding. After a second, the glow fades to something manageable. As you observe the wall, you see a phrase written in glowing letters:","Boró na to vlépo apó polloús, allá den krateítai apó kanéna");
 		metatron.setKeyInv(Flower, StaffofPadauk);
@@ -60,14 +61,17 @@ public class runGame {
 		elysianFields.addItem(RodofAsclepius);
 		elysianFields.addItem(BallofThread);
 		//declare player
-		final int TURN_LIMIT = 70; //arbitrary number, change when game is complete
+		final int TURN_LIMIT = 70; 
 		Player player = new Player(metatron);
+		System.out.println("Every year, Athens sends seven boys and seven girls to be sacrificed to the Minotaur as punishment for the death of King Minos' only son, Androgeus. It is the third year of tribute. As King Aegeus' son, Theseus, you have volunteered to travel to Crete and kill the Minotaur of the Labyrinth. It is believed that the infamous Sphinx of the fabled city of Thebes, once thought to have perished at the hands of Oedipus, Prince of Corinth is very much alive and has made her home in the Labyrinth. In Eleutheria, you take on the role as Theseus. You must navigate between the different locations of the Labyrinth and place the correct items in the correct locations. Placing the correct items in a location provides a riddle. The riddles may provide insight. It is rumored that the Labyrinth may contain untold wealth.");
+		System.out.println("Press enter to continue");
+		Scanner scanner = new Scanner(System.in);//used to get user input.
+		scanner.nextLine();
 		
 		String CurrentState = "Ready"; // This is the State that commands are entered in.
-		System.out.println("State is: " +CurrentState+ "\n"); // using for debugging 
 		
 		System.out.println("Command list: Move, Pickup, Drop, Examine, Inventory, Journal, Quit"); // Command list
-		Scanner scanner = new Scanner(System.in);//used to get user input.
+		
 		String EnterdCommand;
 		boolean runGame = true;
 		while(runGame){// runs game
@@ -76,21 +80,32 @@ public class runGame {
 				int guesses = 3;
 				
 				//display description
-				String guess = scanner.nextLine();
-				if (guess.compareTo("Saturn")==0)
+				System.out.println("When you approach the creature it says, “I have a riddle for you. Answer it correctly and you'll receive riches beyond your wildest dreams. Answer it wrong and I will have dinner. But I will be generous - you'll get three tries to answer correctly.");
+				System.out.println("Onomázomai Chrónos, Patéras Chrónos, theoroúsa to évdomo apó ta eptá ouránia antikeímena pou eínai oratá me gymnó máti");
+				while (guesses > 0)
 				{
-					//win text
-				}
-				else
-				{
-					guesses--;
-					//wrong text
+					String guess = scanner.nextLine();
+					if (guess.compareTo("Saturn")==0)
+					{
+						System.out.println("The sphinx nods its head and steps aside.");
+						System.out.println(player.getRoom().getDescription());
+						System.out.println("You Win!");
+						System.out.println("You completed the game in " + player.turnCounter + "turns. Can you do better?");
+						runGame = false;
+						guesses = -1;
+					}
+					else
+					{
+						guesses--;
+						//wrong text
+					}
 				}
 				if (guesses == 0)
 				{
 					//lose text
+					System.out.println("The Sphinx grins wide, licks its lips, and begins to chuckle. You start to run as you realize you must have given a wrong answer one last time but you're too slow. The Sphinx pounces upon you and brings you crashing to the ground where your head smashes against the stone floor and everything fades to black.");
+					runGame = false;
 				}
-				
 				
 			}
 			else
@@ -246,11 +261,14 @@ public class runGame {
 				if (player.getJournalSize()==4)
 				{
 					elysianFields.addRoom(treasureRoom, "S");
+					elysianFields.setDescription("You walk into a room that at first appears to have no walls. You feel a warm breeze hit you as it ripples the grassy field at your feet. When you look up, you feel warmth on your face as you shield your eyes from the sun. You find a lock that looks to be made from an old horseshoe embedded in one of the walls. There is also a pedestal made of marble with patterns on it lined in gold. You see the familiar black pillars of the clue but there's something new in the room. There is a large creature blocking a previously unseen doorway. The creature has the face of a woman but the body of a lion.");
+					System.out.println("You feel the ground gently vibrate beneath your feet. Then the vibration becomes more intense. You also start to hear the scraping of stone against stone. The noise and the shaking just seem to get louder and more intense, when it suddenly stops. As you finally get your footing back, you hear a loud roar of a lion. ");
 				}
 				System.out.println((TURN_LIMIT - player.turnCounter) + " Turns remaining");
 				if (player.turnCounter >= TURN_LIMIT)
 				{
 					//display fail text
+					System.out.println("You hear heavy foot-falls coming from behind you and the rattling clink of chains and a grinding sound as if metal is being dragged against stone. You glance behind you to see a lumbering monster 8 feet tall with the body of a man and a head of a bull. It is slowly lumbering towards you dragging a large ax behind with broken manacles around his wrists. As you lock eyes, it raises its ax and charges. You run as fast as you can to keep ahead of it for a while, but it finally overtakes you. With a swing of its arms, the flat side of the ax blade slams into the side of your head and everything goes black.");
 					runGame = false;
 				}
 			}
